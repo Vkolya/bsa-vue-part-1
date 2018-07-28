@@ -1,0 +1,85 @@
+body,
+button,
+input,
+select,
+textarea {
+    color: #404040;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    padding: 1em 0;
+}
+
+p {
+    margin: 0;
+    padding: 1em 0;
+}
+
+/*--------------------------------------------------------------
+General styles
+--------------------------------------------------------------*/
+body {
+    background-image: url("../images/background.png");
+}
+.site-wrapper {
+    background: #ededed;
+    max-width: 1200px;
+    margin: 50px auto;
+}
+
+.head-section,
+.main-content,
+.sidebar,
+.footer-section {
+    background: white;
+    color: black;
+}
+.footer-section {
+    padding: 10px;
+}
+.head-section,
+.main-content {
+    border-bottom: 1px solid #A6B1EB;
+}
+.main-content .search-block {
+    float: left;
+}
+.main-content .search {
+    margin: 10px;
+    padding: 10px;
+}
+.main-content input[name='search_field'] {
+    cursor: pointer;
+    margin:0 5px 0 10px;
+}
+.add-btn {
+    float: right;
+    margin: 20px;
+}
+.avatar {
+    width: 60px;
+}
+.action-td .view,.action-td .edit {
+   float: left;
+   margin-right: 5px;
+}
+[v-cloak] {
+      display: none;
+    }
+    .edit {
+      display: none;
+    }
+    .editing .edit {
+      display: block
+    }
+    .editing .view {
+      display: none;
+    }
+
+

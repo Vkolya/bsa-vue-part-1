@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>BSA Vue part 1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <!-- development version, includes helpful console warnings -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="js/main.js"></script>
+    </head>
+    <body>
+        <div class="site-wrapper">
+            <header class="head-section">
+                <h3 class="text-center">Vue part 1</h3>
+            </header>
+
+            <main id="content" class="main-content">
+
+                <div class="form-group search-block">
+
+                    <label for="name">Search:</label>
+                    <input type="text" class="search" v-model="search" name="search"/>
+                    in
+                    <input type="radio" value="name" v-model="filterBy" name="search_field" checked>Name
+                    <input type="radio" value="email" v-model="filterBy" name="search_field">Email
+
+                </div>
+
+                <button type="button" data-toggle="modal" data-target="#add" class="btn btn-primary add-btn">Add</button>
+                <table class="table" v-if="userList.length">
+                    <thead>
+                        <tr>
+                            <th v-for="column in columns">
+                                {{column}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(user,index) in userList" :key="user.id" :class="{editing: user == editedUser}" v-cloak>
+                            <td>
+                                {{user.id}}
+                            </td>
+                            <td>
+                                <div class="view">
+                                    {{user.name}}
+                                </div>
+                                <div class="edit">
+                                    <input type="text" required="required" v-model="user.name" class="form-control" id="name">
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="view">
+                                    {{user.email}}
+                                </div>
+                                <div class="edit">
+                                    <input type="email" required="required" v-model="user.email" class="form-control" id="email">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="view">
+                                    <img :src="'images/avatars/'+user.avatar" class="avatar" alt="avatar"/> 
+                                </div>
+                                <div class="edit">
+                                    <input type="text" required="required" v-model="user.avatar" class="form-control" id="avatar">
+                                </div>
+                            </td>
+
+                            <td style="width: 18%;" class="action-td">
+                                <div class="view">
+                                    <button type="button" @click="edit(user)" class="btn btn-warning view">Edit</button>
+                                </div>
+                                <div class="edit">
+                                    <button type="button" @click="update()" class="btn btn-primary">Update</button>
+                                </div>
+                                <button type="button" @click="remove(index)" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table" v-else>
+                    <thead>
+                        <tr>
+                            <th v-for="column in columns">
+                                {{column}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5" class="text-center">No results!</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="addLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="add_form">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label for="name">Name:</label>
+                                            <input type="text" required="required" v-model="user_fields.name" class="form-control" id="name">
+                                        </div>
+                                        <label for="email">Email address:</label>
+                                        <input type="email" required="required" v-model="user_fields.email" class="form-control" id="email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pwd">Avatar:</label>
+                                        <input type="text" required="required" v-model="user_fields.avatar" class="form-control" id="avatar">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" @click="add()" class="btn btn-primary">Save</button>
+                                <button type="button"class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <footer class="footer-section text-center">
+                © 2018 Binary studio academy HOMETASK
+            </footer>
+
+        </div>
+
+    </body>
+</html>
