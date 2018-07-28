@@ -74,7 +74,4 @@ window.onload = function () {
     var orderByIdDesc = function (a, b) {
         return b.id - a.id;
     };
-    function logArrayElements(element, index, array) {
-  console.log('array[' + index + '] = ' + element['name'] + element['id']);
-}
 }
