@@ -7,11 +7,11 @@ window.onload = function () {
             filterBy: 'name',
             columns: ['id', 'name', 'email', 'avatar', 'action'],
             users: [],
-            user_fields: {id: 0, name: "", email: "", avatar: "unknown.png"},
+            user_fields: {name: "", email: "", avatar: "unknown.png"},
         },
         computed: {
             userList() {
-
+                
                 if (this.search === '') {
                     return this.users.sort(orderByIdDesc);
                 }
@@ -59,7 +59,8 @@ window.onload = function () {
                 this.users.sort(orderByIdDesc);
                 $('#add').modal('hide');
             },
-            remove: function (index) {
+            remove: function (user) {
+                var index = this.users.indexOf(user);
                 this.users.splice(index, 1);
             },
             edit: function (user) {
@@ -73,4 +74,7 @@ window.onload = function () {
     var orderByIdDesc = function (a, b) {
         return b.id - a.id;
     };
+    function logArrayElements(element, index, array) {
+  console.log('array[' + index + '] = ' + element['name'] + element['id']);
+}
 }
